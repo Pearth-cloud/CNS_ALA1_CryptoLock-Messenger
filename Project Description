@@ -1,0 +1,77 @@
+🔐 Secure Messaging Web App
+A secure web-based messaging app built using AES (Advanced Encryption Standard) and RSA (Rivest–Shamir–Adleman) cryptography. This project demonstrates a hybrid encryption model where:
+Messages are encrypted with AES (symmetric encryption) for performance and confidentiality.
+The AES key is then encrypted using RSA (asymmetric encryption) for secure key transmission.
+
+🌐 Project Goal
+To help students understand how modern secure communication works by simulating end-to-end encryption using both symmetric and asymmetric encryption techniques in a web environment.
+
+🚀 Features
+Encrypts user message using AES.
+Encrypts AES key using RSA public key.
+Securely transmits encrypted key + message.
+Decrypts AES key using RSA private key.
+Decrypts the message with decrypted AES key.
+Clean UI with passphrase-based login.
+Toggle between Dark Mode and Light Mode.
+Share encrypted messages via link or blob.
+
+🔧 Technologies Used
+HTML5, CSS3, JavaScript
+Web Crypto API (for AES and RSA operations)
+🔐 Encryption Workflow
+The encryption process in Secure Messenger ensures secure and private communication by combining RSA and AES-GCM encryption techniques.
+
+🔁 Step-by-Step Process:
+User Inputs Message
+The user types a message in the message input field.
+
+Generate AES Key
+A new 256-bit AES-GCM key is generated to encrypt the user's message.
+
+Encrypt the Message with AES
+The message is encrypted using the AES key and a randomly generated IV (Initialization Vector).
+
+Generate RSA Key Pair
+An RSA key pair (2048-bit) is generated if not already present.
+
+Encrypt AES Key with RSA Public Key
+The AES key is exported and encrypted using the RSA public key.
+This ensures that only the RSA private key holder can decrypt the AES key.
+
+Display Encrypted Output
+The encrypted AES key and encrypted message are displayed in the output section.
+A shareable link (blob) can also be generated for secure sharing.
+
+Decryption Process
+The recipient uses the RSA private key to decrypt the AES key.
+Then, the encrypted message is decrypted using the AES key to retrieve the original plaintext message.
+
+✅ This hybrid encryption ensures:
+Fast symmetric encryption with AES.
+Secure key exchange using RSA.
+
+📦 Folder Structure
+secure-messaging-app/
+│
+├── index.html          # Main app UI
+├── style.css           # Responsive styling (dark/light themes)
+├── script.js           # Core logic: encryption, decryption
+├── rsa.js              # Handles RSA key generation, encryption, decryption
+├── aes.js              # AES encryption/decryption utilities
+└── README.md           # Project documentation
+
+🔑 Passphrase login screen
+📝 Message input & encryption view
+🔓 Decrypted message view
+📱 Responsive mobile-friendly design
+🌗 Toggle Dark/Light mode
+
+🎯 Educational Objectives
+Learn hybrid encryption models (AES + RSA).
+Understand how message confidentiality is achieved.
+Explore how symmetric and asymmetric encryption complement each other.
+Practice building secure, user-friendly web apps.
+
+🛡️ Disclaimer
+This project is for educational purposes only. While it demonstrates core cryptographic principles, it should not be used in production without professional security review.
