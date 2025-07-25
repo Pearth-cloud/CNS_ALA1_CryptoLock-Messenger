@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Secure Messenger</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <!-- Login screen -->
+  <div class="login-screen" id="loginScreen">
+    <h2>🔐 Enter Passphrase</h2>
+    <input type="password" id="passphraseInput" placeholder="Enter your passphrase" />
+    <button onclick="checkPassphrase()">Login</button>
+  </div>
+
+  <!-- Main secure messenger UI -->
+  <div class="container" id="mainApp" style="display: none;">
+    <header>
+      <h1>🔐 Secure Messenger</h1>
+      <div style="display: flex; align-items: center; gap: 0.5rem;">
+        <button id="modeToggle" onclick="toggleMode()">🌓</button>
+        <span id="modeLabel">Dark Mode</span>
+      </div>
+    </header>
+
+    <textarea id="message" placeholder="Enter your message..."></textarea>
+    
+    <div class="buttons">
+      <button onclick="encryptMessage()">Encrypt 🔒</button>
+      <button onclick="decryptMessage()">Decrypt 🔓</button>
+    </div>
+
+    <div class="output">
+      <div>
+        <h3>🔑 Encrypted AES Key</h3>
+        <pre id="encryptedKey"></pre>
+      </div>
+      <div>
+        <h3>📦 Encrypted Message</h3>
+        <pre id="encryptedText"></pre>
+        <button onclick="copyBlob()">🔗 Copy Shareable Link</button>
+      </div>
+      <div>
+        <h3>✅ Decrypted Message</h3>
+        <pre id="decryptedText"></pre>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
