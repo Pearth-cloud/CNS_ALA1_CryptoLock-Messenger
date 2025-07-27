@@ -117,3 +117,82 @@ window.onload = () => {
     window.location.hash = "";
   }
 };
+
+// Switch to recipient/decryption page
+function goToDecryptionPage() {
+  document.getElementById("mainApp").style.display = "none";
+  document.getElementById("decryptionPage").style.display = "block";
+}
+
+// Back to main sender page
+function goToMain() {
+  document.getElementById("decryptionPage").style.display = "none";
+  document.getElementById("mainApp").style.display = "block";
+}
+
+// Manual decrypt with pasted key and message
+async function manualDecrypt() {
+  const encKey = document.getElementById("decryptKey").value;
+  const encMsg = document.getElementById("decryptInput").value;
+
+  if (!encKey || !encMsg) {
+    alert("Please provide both encrypted key and message.");
+    return;
+  }
+
+  try {
+    const encryptedKeyBytes = Uint8Array.from(atob(encKey), c => c.charCodeAt(0));
+    const rawAESKey = await crypto.subtle.decrypt(
+      { name: "RSA-OAEP" },
+      rsaKeyPair.privateKey,
+      encryptedKeyBytes
+    );
+
+    const aesKey = await crypto.subtle.importKey("raw", rawAESKey, { name: "AES-GCM" }, false, ["decrypt"]);
+
+    const ciphertextBytes = Uint8Array.from(atob(encMsg), c => c.charCodeAt(0));
+    const decrypted = await crypto.subtle.decrypt(
+      { name: "AES-GCM", iv: encryptedData.iv },
+      aesKey,
+      ciphertextBytes
+    );
+
+    const dec = new TextDecoder();
+    document.getElementById("manualDecryptedText").innerText = dec.decode(decrypted);
+  } catch (err) {
+    document.getElementById("manualDecryptedText").innerText = "❌ Failed to decrypt.";
+  }
+}
+
+// Updated onload to support route switch
+window.onload = () => {
+  generateKeys();
+
+  const isLight = document.body.classList.contains("light");
+  const label = document.getElementById("modeLabel");
+  if (label) label.textContent = isLight ? "Light Mode" : "Dark Mode";
+
+  const hash = window.location.hash;
+
+  if (hash.startsWith("#blob=")) {
+    const blob = hash.substring(6);
+    document.getElementById("message").value = atob(blob);
+    window.location.hash = "";
+  }
+
+  // Show login screen if no hash
+  document.getElementById("loginScreen").style.display = "flex";
+};
+
+function clearSender() {
+  document.getElementById("message").value = "";
+  document.getElementById("encryptedKey").textContent = "";
+  document.getElementById("encryptedText").textContent = "";
+  document.getElementById("decryptedText").textContent = "";
+}
+
+function clearRecipient() {
+  document.getElementById("decryptInput").value = "";
+  document.getElementById("decryptKey").value = "";
+  document.getElementById("manualDecryptedText").textContent = "";
+}
