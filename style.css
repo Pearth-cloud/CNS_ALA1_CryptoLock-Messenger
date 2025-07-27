@@ -157,9 +157,9 @@ pre {
   padding: 5px 12px;
   font-size: 1.2rem;
   cursor: pointer;
-  background: none;
-  border: 2px solid var(--highlight);
-  color: var(--highlight);
+  background: var(--highlight);
+  border: none;
+  color: #000;
   border-radius: 8px;
 }
 
