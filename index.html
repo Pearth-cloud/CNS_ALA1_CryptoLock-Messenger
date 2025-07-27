@@ -29,6 +29,8 @@
     <div class="buttons">
       <button onclick="encryptMessage()">Encrypt 🔒</button>
       <button onclick="decryptMessage()">Decrypt 🔓</button>
+      <button onclick="goToDecryptionPage()">➡️ Recipient Page</button>
+      <button onclick="clearSender()">🧹 Clear</button> <!-- NEW -->
     </div>
 
     <div class="output">
@@ -48,6 +50,25 @@
     </div>
   </div>
 
-  <script src="script.js"></script>
+  <!-- Recipient/Decryption Page -->
+  <div class="container" id="decryptionPage" style="display: none;">
+    <header>
+      <h1>🔓 Decrypt Message</h1>
+      <button onclick="goToMain()">🔙 Back to Sender</button>
+    </header>
+
+    <textarea id="decryptInput" placeholder="Paste encrypted message here..."></textarea>
+    <textarea id="decryptKey" placeholder="Paste encrypted AES key here..."></textarea>
+
+    <button onclick="manualDecrypt()">Decrypt 🔓</button>
+    <button onclick="clearRecipient()">🧹 Clear</button> <!-- NEW -->
+
+    <div class="output">
+      <h3>✅ Decrypted Output</h3>
+      <pre id="manualDecryptedText"></pre>
+    </div>
+  </div>
+
+  <script src="script.js" defer></script>
 </body>
 </html>
