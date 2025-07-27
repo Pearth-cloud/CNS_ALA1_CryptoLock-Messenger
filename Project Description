@@ -57,8 +57,6 @@ secure-messaging-app/
 ├── index.html          # Main app UI
 ├── style.css           # Responsive styling (dark/light themes)
 ├── script.js           # Core logic: encryption, decryption
-├── rsa.js              # Handles RSA key generation, encryption, decryption
-├── aes.js              # AES encryption/decryption utilities
 └── README.md           # Project documentation
 
 🔑 Passphrase login screen
