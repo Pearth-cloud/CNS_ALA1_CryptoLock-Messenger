@@ -14,60 +14,65 @@ body.light {
   --textarea-bg: #ffffff;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   font-family: 'Segoe UI', sans-serif;
   margin: 0;
-  padding: 40px 20px;
+  padding: 0;
   background: var(--bg-color);
   color: var(--text-color);
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   min-height: 100vh;
-  box-sizing: border-box;
   transition: background 0.3s, color 0.3s;
 }
 
 .container {
-  width: 100%;
-  max-width: 700px;
+  width: 95%;
+  max-width: 750px;
   background: var(--container-bg);
-  padding: 30px;
+  padding: 40px 30px;
   border-radius: 16px;
-  box-shadow: 0 0 30px rgba(0,0,0,0.4);
-  box-sizing: border-box;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
 }
 
 h1 {
   text-align: center;
   color: var(--highlight);
   margin-bottom: 20px;
+  font-size: 2rem;
 }
 
 textarea {
   width: 100%;
   height: 120px;
   padding: 15px;
-  font-size: 16px;
+  font-size: 1rem;
   background: var(--textarea-bg);
   color: inherit;
   border: none;
   border-radius: 8px;
   resize: none;
-  box-sizing: border-box;
+  margin-top: 15px;
 }
 
 .buttons {
-  margin-top: 15px;
-  text-align: center;
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
 }
 
 button {
   background: var(--highlight);
   color: #000;
   border: none;
-  padding: 10px 25px;
-  margin: 10px;
+  padding: 10px 20px;
   font-weight: bold;
   border-radius: 8px;
   cursor: pointer;
@@ -91,62 +96,78 @@ button:hover {
 
 pre {
   background: var(--textarea-bg);
-  padding: 10px;
+  padding: 12px;
   border-radius: 8px;
   overflow-x: auto;
   white-space: pre-wrap;
   word-wrap: break-word;
+  font-size: 0.95rem;
   margin: 0;
 }
 
-/* Login screen */
+/* Login Screen Styling */
 .login-screen {
+  background: var(--container-bg);
+  border-radius: 16px;
+  padding: 40px 30px;
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: auto;
-  padding: 40px;
-  background: var(--container-bg);
-  border-radius: 16px;
-  width: 90%;
-  max-width: 400px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+}
+
+.login-screen h2 {
+  color: var(--highlight);
+  margin-bottom: 20px;
 }
 
 .login-screen input {
   padding: 10px;
   width: 100%;
-  margin: 10px 0;
   border-radius: 8px;
   border: none;
+  font-size: 1rem;
+  margin-bottom: 15px;
 }
 
-/* Responsive tweaks */
+.login-screen button {
+  width: 100%;
+}
+
+/* Responsive Tweaks */
 @media (max-width: 600px) {
+  .container {
+    padding: 30px 20px;
+  }
+
+  button {
+    width: 100%;
+    margin-top: 10px;
+  }
+
   .buttons {
     flex-direction: column;
   }
-  button {
-    width: 100%;
-    margin: 5px 0;
-  }
 }
 
-/* 🌗 Dark/Light mode toggle layout */
-.mode-toggle {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin: 10px 20px;
-  justify-content: flex-end;
-}
-
+/* Dark/Light mode toggle */
 #modeToggle {
   padding: 5px 12px;
   font-size: 1.2rem;
   cursor: pointer;
+  background: none;
+  border: 2px solid var(--highlight);
+  color: var(--highlight);
+  border-radius: 8px;
 }
 
 #modeLabel {
   font-size: 0.95rem;
+  color: var(--highlight);
+}
+
+#encryptedText {
+  margin-bottom: 12px;
 }
